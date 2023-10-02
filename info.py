@@ -12,23 +12,23 @@ def is_enabled(value, default):
 
 # Bot information
 SESSION = environ.get('SESSION', 'Auto_Filters_Bot')
-API_ID = int(environ.get('API_ID', ''))
-API_HASH = environ.get('API_HASH', '')
-BOT_TOKEN = environ.get('BOT_TOKEN', '')
+API_ID = int(environ.get('API_ID', '27784435'))
+API_HASH = environ.get('API_HASH', '68359277aa8d4e439bb8b98b533fbf6f')
+BOT_TOKEN = environ.get('BOT_TOKEN', '6480605153:AAF4SJBEYkt4Co5wlPUwoVbRIkvI-HkiAsY')
 PORT = int(environ.get('PORT', '8080'))
 
 # Bot pics and stickers
 STICKERS = (environ.get('STICKERS', 'CAACAgIAAxkBAAEGm9hjhf69CtQmXoeQ2HidYCGBFeZ4gAACxgEAAhZCawpKI9T0ydt5RysE CAACAgIAAxkBAAEGm9pjhf7I9jCDh3PpkocMNFcPJfisvwAC0wADVp29CvUyj5fVEvk9KwQ CAACAgIAAxkBAAEGm9xjhf7SH4Yc8EP5yI4e8BTH968ClwACGAADDbbSGX671giQDJU8KwQ')).split()
-PICS = (environ.get('PICS', 'https://telegra.ph/file/58fef5cb458d5b29b0186.jpg https://telegra.ph/file/f0aa4f433132769f8970c.jpg https://telegra.ph/file/f515fbc2084592eca60a5.jpg https://telegra.ph/file/20dbdcffaa89bd3d09a74.jpg https://telegra.ph/file/6045ba953af4def846238.jpg')).split()
+PICS = (environ.get('PICS', 'https://graph.org/file/aa7f6e3c8b1307654abf3.jpg https://graph.org/file/82a53e1a92ab90a511ac8.jpg https://graph.org/file/2f617b1cad9a18ccda96a.jpg https://graph.org/file/21191dc065aff00097aa8.jpg https://graph.org/file/9b98813764d6a8c5e303e.jpg')).split()
 
 # Bot Admins
-ADMINS = [int(admins) if id_pattern.search(admins) else admins for admins in environ.get('ADMINS', '').split()]
+ADMINS = [int(admins) if id_pattern.search(admins) else admins for admins in environ.get('ADMINS', '5505094097').split()]
 
 # Channels
-INDEX_CHANNELS = [int(index_channels) if id_pattern.search(index_channels) else index_channels for index_channels in environ.get('INDEX_CHANNELS', '').split()]
-auth_channel = environ.get('AUTH_CHANNEL', '')
+INDEX_CHANNELS = [int(index_channels) if id_pattern.search(index_channels) else index_channels for index_channels in environ.get('INDEX_CHANNELS', '-1001857838895').split()]
+auth_channel = environ.get('AUTH_CHANNEL', '-1001986490303')
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
-LOG_CHANNEL = int(environ.get('LOG_CHANNEL', ''))
+LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1001532575427'))
 
 # MongoDB information
 DATABASE_URL = environ.get('DATABASE_URL', "")
@@ -51,38 +51,6 @@ LONG_IMDB_DESCRIPTION = is_enabled(environ.get("LONG_IMDB_DESCRIPTION", "False")
 LINK_MODE = is_enabled(environ.get("LINK_MODE", "True"), True)
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
-
-# Online Stream and Download
-NO_PORT = bool(environ.get('NO_PORT', False))
-APP_NAME = None
-if 'DYNO' in environ:
-    ON_HEROKU = True
-    APP_NAME = environ.get('APP_NAME')
-else:
-    ON_HEROKU = False
-BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
-FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
-URL = "https://pap-corn.onrender.com".format(FQDN) if ON_HEROKU or NO_PORT else \
-    "https://pap-corn.onrender.com/".format(FQDN, PORT)
-SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
-WORKERS = int(environ.get('WORKERS', '4'))
-SESSION_NAME = str(environ.get('SESSION_NAME', 'LazyBot'))
-MULTI_CLIENT = False
-name = str(environ.get('name', 'LazyPrincess'))
-PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
-if 'DYNO' in environ:
-    ON_HEROKU = True
-    APP_NAME = str(getenv('APP_NAME'))
-
-else:
-    ON_HEROKU = False
-HAS_SSL=bool(getenv('HAS_SSL',False))
-if HAS_SSL:
-    URL = "https://demo-gsmz.onrender.com/".format(FQDN)
-else:
-    URL = "https://demo-gsmz.onrender.com/".format(FQDN)
-
-
 
 # Other
 IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", "✅ I Found: <code>{query}</code>\n\n🏷 Title: <a href={url}>{title}</a>\n🎭 Genres: {genres}\n📆 Year: <a href={url}/releaseinfo>{year}</a>\n🌟 Rating: <a href={url}/ratings>{rating} / 10</a>\n☀️ Languages: {languages}\n📀 RunTime: {runtime} Minutes\n\n🗣 Requested by: {message.from_user.mention}\n©️ Powered by: <b>{message.chat.title}</b>")
